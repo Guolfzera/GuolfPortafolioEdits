@@ -26,8 +26,23 @@ export const photos: Photo[] = [
     tall: true,
   },
   {
+    src: "/photos/animacion-after-effects-intro-podcast-weones-pencas.jpg",
+    alt: "Animando en After Effects la intro del podcast Weones Pencas",
+    tall: true,
+  },
+  {
     src: "/photos/edicion-video-youtube-cartas-pokemon-rakyz.jpg",
     alt: "Editando el video de YouTube de cartas Pokémon para Rakyz",
+    tall: true,
+  },
+  {
+    src: "/photos/edicion-vlog-youtube-flavia-martin.jpg",
+    alt: "Editando un vlog de YouTube para Flavia Martin",
+    tall: true,
+  },
+  {
+    src: "/photos/edicion-outro-podcast-weones-pencas.jpg",
+    alt: "Timeline de la outro del podcast Weones Pencas en Premiere Pro",
     tall: true,
   },
   {
