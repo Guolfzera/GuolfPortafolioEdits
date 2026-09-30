@@ -13,6 +13,7 @@ export const videos: Video[] = [
   { title: "Campaña Fortnite", client: "Fortnite", category: "marca", url: "", vertical: true },
   { title: "Speed ramp edit", category: "social", url: "", vertical: true },
   { title: "Weones Pencas", client: "Podcast", category: "entretenimiento", url: "", vertical: true },
+  { title: "Vlog", client: "YouTube", category: "entretenimiento", url: "" },
   { title: "Campaña MG Motors", client: "MG Motors", category: "marca", url: "" },
   { title: "Music sync edit", category: "social", url: "", vertical: true },
   { title: "Campaña Delicious Pro", client: "Delicious Pro", category: "marca", url: "", vertical: true },

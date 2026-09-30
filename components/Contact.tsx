@@ -19,7 +19,7 @@ export function Contact() {
       />
       <div className="relative mx-auto max-w-6xl">
         <Reveal y={20}>
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.25em] text-white/50">04 — Contacto</p>
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.25em] text-white/50">05 — Contacto</p>
         </Reveal>
         <h2 className="font-display text-[clamp(3rem,10vw,8rem)] font-bold leading-[0.9] tracking-[-0.04em]">
           <SplitText text="¿Tienes un" inView className="block" />

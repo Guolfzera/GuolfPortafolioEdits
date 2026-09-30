@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { MarqueeBand } from "@/components/MarqueeBand";
 import { VideoGallery } from "@/components/VideoGallery";
 import { BehindTheScenes } from "@/components/BehindTheScenes";
+import { Services } from "@/components/Services";
 import { Clients } from "@/components/Clients";
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
@@ -18,6 +19,7 @@ export default function Home() {
         <MarqueeBand />
         <BehindTheScenes />
         <VideoGallery />
+        <Services />
         <Clients />
         <About photo={resolvePublicImage(site.about.photo)} />
         <Contact />

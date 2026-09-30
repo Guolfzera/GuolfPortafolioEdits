@@ -4,7 +4,7 @@ export const site = {
   role: "Editor de video & clipper",
   tagline: "Cortes con ritmo para creadores, streamers y marcas.",
   description:
-    "Cristóbal «Guolf», editor de video y clipper. Clips para streamers, contenido para redes y campañas con influencers de la escena chilena para marcas como AMD, Fortnite y MG Motors.",
+    "Cristóbal «Guolf», editor de video y clipper. Clips para streamers, videos de YouTube (vlogs y podcasts), producción de eventos con equipo de grabación y campañas con influencers de la escena chilena para marcas como AMD, Fortnite y MG Motors.",
   // Link de YouTube o Vimeo de tu showreel (se reproduce en silencio de fondo en la portada). Déjalo vacío para no usarlo.
   showreel: "",
   about: {
@@ -16,6 +16,7 @@ export const site = {
     bio: [
       "Soy Cristóbal, pero en la escena me conocen como Guolf. Tengo 24 años y llevo 2 años editando video para creadores de contenido y marcas de la escena chilena.",
       "He trabajado con Rakyz, Diego Venegas, Blumecl, Vichoobtw, Flavia Martin y el podcast Weones Pencas, y he editado campañas junto a influencers para marcas como AMD, Fortnite, MG Motors y Delicious Pro.",
+      "También trabajo con un equipo con cámara para grabar eventos y producir videos más elaborados, te ayudo con la parte creativa del video y edito formato YouTube: vlogs, videos especiales y podcasts.",
     ],
     highlights: [
       {
