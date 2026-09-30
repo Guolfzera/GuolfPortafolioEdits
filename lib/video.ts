@@ -1,4 +1,4 @@
-export type Category = "marca" | "entretenimiento" | "social";
+export type Category = "marca" | "entretenimiento";
 
 export type Video = {
   title: string;
@@ -12,8 +12,7 @@ export type Video = {
 export const categories: { id: Category | "all"; label: string }[] = [
   { id: "all", label: "Todos" },
   { id: "marca", label: "Marcas & Publicidad" },
-  { id: "entretenimiento", label: "Entretenimiento" },
-  { id: "social", label: "Edits / Social" },
+  { id: "entretenimiento", label: "Entretenimiento / Reels" },
 ];
 
 export const categoryLabel = (c: Category) =>

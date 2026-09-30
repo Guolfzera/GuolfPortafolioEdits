@@ -30,7 +30,7 @@ En `data/videos.ts` agrega una línea:
 { title: "Nombre del video", client: "Cliente", category: "marca", url: "https://youtu.be/XXXXXXXXXXX" },
 ```
 
-- `category`: `"marca"` (Marcas & Publicidad), `"entretenimiento"` o `"social"` (Edits / Social).
+- `category`: `"marca"` (Marcas & Publicidad) o `"entretenimiento"` (Entretenimiento / Reels: clips, reels, podcasts y edits).
 - `url`: link de YouTube (videos normales o Shorts) o de Vimeo. La miniatura se saca sola.
 - `vertical: true` para videos 9:16 (reels, shorts, TikTok).
 - `thumbnail: "/photos/mi-miniatura.jpg"` si quieres una miniatura propia.

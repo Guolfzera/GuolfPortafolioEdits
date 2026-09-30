@@ -1,5 +1,5 @@
 // Tus videos. Para agregar uno, copia un bloque y cambia los datos.
-// category: "marca" (Marcas & Publicidad) | "entretenimiento" | "social" (Edits / Social)
+// category: "marca" (Marcas & Publicidad) | "entretenimiento" (Entretenimiento / Reels: clips, reels, podcasts, edits)
 // url: link de YouTube (incluye Shorts) o Vimeo.
 // client: creador o marca que aparece sobre el título.
 // vertical: true para videos 9:16 (reels, shorts, tiktoks).
@@ -24,7 +24,7 @@ export const videos: Video[] = [
   {
     title: "Clip: implante de pelo",
     client: "Rakyz",
-    category: "social",
+    category: "entretenimiento",
     url: "https://youtube.com/shorts/kkHAWou0yh4",
     vertical: true,
   },
@@ -45,7 +45,7 @@ export const videos: Video[] = [
   {
     title: "Clip CS: aura farming",
     client: "Vichoobtw",
-    category: "social",
+    category: "entretenimiento",
     url: "https://youtube.com/shorts/5H8pp_g6InA",
     vertical: true,
   },
@@ -66,7 +66,7 @@ export const videos: Video[] = [
   {
     title: "Clip: fitness edit",
     client: "Rakyz",
-    category: "social",
+    category: "entretenimiento",
     url: "https://youtube.com/shorts/CrlwY7gHYBQ",
     vertical: true,
   },
@@ -87,7 +87,7 @@ export const videos: Video[] = [
   {
     title: "Clip: Xokas chileno",
     client: "Rakyz",
-    category: "social",
+    category: "entretenimiento",
     url: "https://youtube.com/shorts/GO94sHtK1pU",
     vertical: true,
   },
@@ -101,7 +101,7 @@ export const videos: Video[] = [
   {
     title: "Clip: cheater vs cheater",
     client: "Vichoobtw",
-    category: "social",
+    category: "entretenimiento",
     url: "https://youtube.com/shorts/5qoKfPALk7k",
     vertical: true,
   },
@@ -122,14 +122,14 @@ export const videos: Video[] = [
   {
     title: "Clips: EUW tilt",
     client: "Rakyz",
-    category: "social",
+    category: "entretenimiento",
     url: "https://youtube.com/shorts/4zrYkSNYepQ",
     vertical: true,
   },
   {
     title: "Clip: carrera a Challenger 2",
     client: "Rakyz",
-    category: "social",
+    category: "entretenimiento",
     url: "https://youtube.com/shorts/wvJgsEcUdpc",
     vertical: true,
   },
