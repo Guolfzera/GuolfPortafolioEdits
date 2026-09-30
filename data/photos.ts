@@ -6,33 +6,33 @@
 // (edicion-de-video-premiere-pro.jpg ✅  ediciondevideo1.jpg ❌).
 // `alt` describe la foto con palabras que alguien buscaría; también se muestra al pasar el cursor.
 // tall: true hace la foto más alta en la grilla.
-export type Photo = { src: string; alt: string; tall?: boolean };
+// ratio: proporción exacta (ancho/alto) para imágenes que no se deben recortar, como capturas.
+export type Photo = { src: string; alt: string; tall?: boolean; ratio?: string };
 
 export const photos: Photo[] = [
   {
-    src: "/photos/editor-de-video-guolf-setup.jpg",
-    alt: "Setup de edición de video de Guolf",
+    src: "/photos/edicion-de-video-campana-amd-paris-blumecl.jpg",
+    alt: "Editando la campaña AMD París de Blumecl en Premiere Pro",
     tall: true,
   },
   {
-    src: "/photos/edicion-de-video-premiere-pro.jpg",
-    alt: "Edición de video en Premiere Pro",
+    src: "/photos/testimonio-campana-fortnite-edicion-de-video.jpg",
+    alt: "Feedback de los encargados de la campaña Fortnite: «que buena edición»",
+    ratio: "1170 / 854",
   },
   {
-    src: "/photos/edicion-de-video-after-effects.jpg",
-    alt: "Animación y efectos en After Effects",
-  },
-  {
-    src: "/photos/editor-de-video-cristobal-guolf-editando.jpg",
-    alt: "Cristóbal «Guolf», editor de video, editando",
+    src: "/photos/edicion-de-video-campana-fortnite-blumecl.jpg",
+    alt: "Editando la campaña Fortnite de Blumecl en Premiere Pro",
     tall: true,
   },
   {
-    src: "/photos/edicion-clips-de-stream.jpg",
-    alt: "Editando clips de stream para redes sociales",
+    src: "/photos/edicion-video-youtube-cartas-pokemon-rakyz.jpg",
+    alt: "Editando el video de YouTube de cartas Pokémon para Rakyz",
+    tall: true,
   },
   {
-    src: "/photos/edicion-de-video-para-marcas.jpg",
-    alt: "Edición de video para campañas de marcas",
+    src: "/photos/edicion-video-youtube-rakyz.jpg",
+    alt: "Editando un video de YouTube para Rakyz",
+    tall: true,
   },
 ];

@@ -20,7 +20,10 @@ export function BehindTheScenes() {
             return (
             <Reveal key={i} delay={(i % 3) * 0.1} className="mb-5 break-inside-avoid">
               <figure className="group relative overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-black/5 transition-all duration-500 ease-out-expo hover:-translate-y-2 hover:shadow-lift">
-                <div className={`relative overflow-hidden ${photo.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
+                <div
+                  className={`relative overflow-hidden ${photo.ratio ? "" : photo.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}
+                  style={photo.ratio ? { aspectRatio: photo.ratio } : undefined}
+                >
                   {src ? (
                     <Image
                       src={src}

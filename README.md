@@ -38,19 +38,8 @@ En `data/videos.ts` agrega una línea:
 
 ### Agregar fotos
 
-Los nombres ya están definidos en `data/photos.ts`. Solo guarda cada foto en `public/photos/` con ese nombre y aparece sola (puede ser .jpg, .png o .webp):
-
-| Archivo | Qué foto |
-| --- | --- |
-| `cristobal-guolf-editor-de-video.jpg` | Tu foto para "Sobre mí" |
-| `editor-de-video-guolf-setup.jpg` | Tu setup (vertical) |
-| `edicion-de-video-premiere-pro.jpg` | Pantalla con Premiere Pro |
-| `edicion-de-video-after-effects.jpg` | Pantalla con After Effects |
-| `editor-de-video-cristobal-guolf-editando.jpg` | Tú editando (vertical) |
-| `edicion-clips-de-stream.jpg` | Editando clips de stream |
-| `edicion-de-video-para-marcas.jpg` | Trabajando en una campaña |
-
-Con `npm run dev`, las fotos que faltan muestran el nombre esperado.
+Guarda la foto en `public/photos/` y agrégala en `data/photos.ts` con su nombre y un texto `alt`.
+Tu foto de "Sobre mí" es `public/photos/cristobal-guolf-editor-de-video.jpg`.
 
 **Nombres para Google:** minúsculas, sin tildes ni ñ, palabras separadas con guiones
 (`edicion-de-video-premiere-pro.jpg` ✅, `ediciondevideo1.jpg` ❌). El texto `alt` de cada foto
