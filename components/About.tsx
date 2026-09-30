@@ -16,7 +16,7 @@ export function About() {
   return (
     <section id="sobre-mi" className="px-4 py-28 md:px-8 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="03" eyebrow="Sobre mí" title="El editor detrás" />
+        <SectionHeading index="03" eyebrow="Sobre mí" title={`${about.fullName}, alias ${about.alias}`} />
 
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <Reveal>
@@ -28,7 +28,7 @@ export function About() {
                 {about.photo ? (
                   <Image
                     src={about.photo}
-                    alt={site.name}
+                    alt={`${about.fullName} «${about.alias}»`}
                     fill
                     sizes="(min-width: 1024px) 40vw, 100vw"
                     className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
@@ -36,13 +36,18 @@ export function About() {
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-neutral-200 to-neutral-400">
                     <span className="font-display text-[10rem] font-bold leading-none text-white/60">
-                      {site.name.charAt(0)}
+                      {about.alias.charAt(0)}
                     </span>
                   </div>
                 )}
               </motion.div>
-              <div className="absolute bottom-4 left-4 rounded-full bg-white/85 px-4 py-2 text-sm font-medium shadow-soft backdrop-blur-md">
-                {site.role}
+              <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                <span className="rounded-full bg-white/85 px-4 py-2 text-sm font-medium shadow-soft backdrop-blur-md">
+                  {about.age} años
+                </span>
+                <span className="rounded-full bg-ink/85 px-4 py-2 text-sm font-medium text-white shadow-soft backdrop-blur-md">
+                  {site.role}
+                </span>
               </div>
             </div>
           </Reveal>
@@ -56,8 +61,24 @@ export function About() {
               </Reveal>
             ))}
 
+            <div className="mt-10 grid gap-3">
+              {about.highlights.map((h, i) => (
+                <Reveal key={h.title} delay={0.1 * i}>
+                  <div className="group flex gap-5 rounded-2xl border border-line bg-white p-5 shadow-soft transition-all duration-500 ease-out-expo hover:-translate-y-1.5 hover:shadow-lift">
+                    <span className="font-display text-sm font-bold text-mute transition-colors duration-300 group-hover:text-ink">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-lg font-bold tracking-tight">{h.title}</h3>
+                      <p className="mt-1 text-ink/60">{h.text}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
             <Reveal delay={0.2}>
-              <p className="mb-4 mt-10 text-xs font-medium uppercase tracking-[0.25em] text-mute">Herramientas</p>
+              <p className="mb-4 mt-10 text-xs font-medium uppercase tracking-[0.25em] text-mute">Herramientas principales</p>
               <div className="flex flex-wrap gap-2">
                 {about.tools.map((t) => (
                   <span

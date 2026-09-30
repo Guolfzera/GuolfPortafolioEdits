@@ -1,12 +1,17 @@
-// Marcas / clientes. logo: imagen en /public/clients (idealmente PNG o SVG sin fondo).
-// Si logo está vacío se muestra el nombre en texto.
-export type Client = { name: string; logo?: string };
+// Creadores y marcas. type: "creador" | "marca".
+// logo (opcional): imagen en /public/clients (idealmente PNG o SVG sin fondo). Sin logo se muestra el nombre.
+// note (opcional): texto pequeño bajo el nombre.
+export type Client = { name: string; type: "creador" | "marca"; logo?: string; note?: string };
 
 export const clients: Client[] = [
-  { name: "Marca Uno" },
-  { name: "Studio Norte" },
-  { name: "Agencia Sur" },
-  { name: "Cliente Cuatro" },
-  { name: "Brand Co." },
-  { name: "Media Lab" },
+  { name: "Rakyz", type: "creador" },
+  { name: "Diego Venegas", type: "creador" },
+  { name: "Blumecl", type: "creador" },
+  { name: "Vichoobtw", type: "creador" },
+  { name: "Flavia Martin", type: "creador" },
+  { name: "Weones Pencas", type: "creador", note: "Podcast" },
+  { name: "AMD", type: "marca" },
+  { name: "Fortnite", type: "marca" },
+  { name: "MG Motors", type: "marca" },
+  { name: "Delicious Pro", type: "marca" },
 ];

@@ -1,4 +1,4 @@
-const words = ["Video Editor", "Speed Ramps", "Color Grading", "Motion", "Sound Design", "Music Sync", "Storytelling"];
+const words = ["Video Editor", "Stream Clips", "Speed Ramps", "Color Grading", "Motion", "Sound Design", "Music Sync", "Storytelling"];
 
 export function MarqueeBand() {
   return (

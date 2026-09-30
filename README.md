@@ -17,7 +17,7 @@ Todo el contenido está en la carpeta `data/`. No hace falta tocar nada más.
 
 | Archivo | Qué contiene |
 | --- | --- |
-| `data/site.ts` | Nombre, frase, bio, herramientas, cifras, email, WhatsApp, redes, showreel |
+| `data/site.ts` | Nombre, frase, bio, puntos destacados, herramientas, cifras, email, Instagram, showreel |
 | `data/videos.ts` | Tus videos |
 | `data/photos.ts` | Fotos detrás de escena |
 | `data/clients.ts` | Marcas / clientes |
@@ -46,13 +46,13 @@ Tu foto para "Sobre mí" va en `data/site.ts` → `about.photo`.
 ### Logos de clientes
 
 Guarda los logos en `public/clients/` (PNG o SVG sin fondo) y ponlos en `data/clients.ts`:
-`{ name: "Marca", logo: "/clients/marca.png" }`.
+`{ name: "Marca", type: "marca", logo: "/clients/marca.png" }` (`type` es `"creador"` o `"marca"`).
 
 ### Showreel de portada
 
 Pega el link de YouTube/Vimeo en `showreel` dentro de `data/site.ts`. Se reproduce en silencio y en loop.
 
-> Antes de publicar, reemplaza los datos de ejemplo: el video de muestra (Big Buck Bunny), los clientes, las cifras de "Sobre mí", el email, WhatsApp e Instagram.
+> Antes de publicar, reemplaza el video de ejemplo (Big Buck Bunny) y agrega los links de tus videos reales.
 
 ## Publicar en Vercel
 

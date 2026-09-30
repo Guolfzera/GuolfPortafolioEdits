@@ -1,32 +1,47 @@
 // Datos generales del sitio. Edita estos valores con tu información.
 export const site = {
   name: "Guolf Edits",
-  role: "Editor de video",
-  tagline: "Cortes que se sienten. Historias que se quedan.",
+  role: "Editor de video & clipper",
+  tagline: "Cortes con ritmo para creadores, streamers y marcas.",
   description:
-    "Edición de video para marcas, creadores y entretenimiento. Publicidad, contenido para redes y edits dinámicos con ritmo.",
+    "Cristóbal «Guolf», editor de video y clipper. Clips para streamers, contenido para redes y campañas con influencers de la escena chilena para marcas como AMD, Fortnite y MG Motors.",
   // Link de YouTube o Vimeo de tu showreel (se reproduce en silencio de fondo en la portada). Déjalo vacío para no usarlo.
   showreel: "",
   about: {
+    fullName: "Cristóbal",
+    alias: "Guolf",
+    age: 24,
     // Foto tuya en /public (ej. "/photos/yo.jpg"). Vacío = placeholder.
     photo: "",
     bio: [
-      "Soy editor de video enfocado en contar historias con ritmo. Trabajo con marcas, agencias y creadores para convertir material en bruto en piezas que retienen y convierten.",
-      "Me obsesiona el timing: cada corte, speed ramp y transición está pensado para ir con la música y mantener la atención hasta el último segundo.",
+      "Soy Cristóbal, pero en la escena me conocen como Guolf. Tengo 24 años y llevo 2 años editando video para creadores de contenido y marcas de la escena chilena.",
+      "He trabajado con Rakyz, Diego Venegas, Blumecl, Vichoobtw, Flavia Martin y el podcast Weones Pencas, y he editado campañas junto a influencers para marcas como AMD, Fortnite, MG Motors y Delicious Pro.",
     ],
-    tools: ["Premiere Pro", "After Effects", "DaVinci Resolve", "CapCut", "Photoshop"],
+    highlights: [
+      {
+        title: "Perfeccionista",
+        text: "Cuido cada corte, cada transición y cada frame hasta que el video quede como tiene que quedar.",
+      },
+      {
+        title: "Abierto al feedback",
+        text: "Siempre dispuesto a escuchar críticas constructivas y hacer las revisiones que el proyecto necesite.",
+      },
+      {
+        title: "Clipper de streamers",
+        text: "Saco los mejores momentos de tus streams y los publico en tus redes, editados con dinamismo.",
+      },
+    ],
+    tools: ["Premiere Pro", "After Effects"],
     stats: [
-      { value: 150, suffix: "+", label: "Proyectos entregados" },
-      { value: 40, suffix: "+", label: "Clientes" },
-      { value: 5, suffix: "", label: "Años editando" },
+      { value: 2, suffix: "", label: "Años editando" },
+      { value: 6, suffix: "", label: "Creadores" },
+      { value: 4, suffix: "+", label: "Marcas en campañas" },
     ],
   },
   contact: {
-    email: "tucorreo@ejemplo.com",
-    // Solo números con código de país, sin + ni espacios (ej. Chile: 56912345678)
-    whatsapp: "56900000000",
-    whatsappMessage: "Hola! Vi tu portafolio y me interesa trabajar contigo.",
-    instagram: "https://instagram.com/tuusuario",
+    email: "c.a.retamal13@gmail.com",
+    instagramUser: "cristo.rv",
+    instagram: "https://www.instagram.com/cristo.rv/",
     tiktok: "",
     youtube: "",
   },
