@@ -46,12 +46,13 @@ export function Cursor() {
 
   const label = hover || "";
   const size = label ? 88 : hover !== null ? 56 : dark ? 16 : 14;
-  // En zona oscura el punto en reposo es blanco sólido con brillo; sobre links y videos
-  // se mantiene la inversión de color, que se lee bien sobre botones blancos y negros
-  const look =
-    dark && hover === null
-      ? "bg-white shadow-[0_0_0_1.5px_rgb(0_0_0/0.55),0_0_18px_rgb(255_255_255/0.55)]"
-      : "bg-white mix-blend-difference";
+  // Siempre blanco; el borde oscuro fino lo hace visible también sobre fondos claros.
+  // Sobre links es un aro (centro transparente) para no tapar el texto del botón.
+  const edge = dark
+    ? "shadow-[0_0_0_1.5px_rgb(0_0_0/0.55),0_0_18px_rgb(255_255_255/0.55)]"
+    : "shadow-[0_0_0_1.5px_rgb(0_0_0/0.7),0_4px_12px_rgb(0_0_0/0.25)]";
+  const ring = hover !== null && !label;
+  const look = ring ? `border-2 border-white bg-transparent ${edge}` : `bg-white ${edge}`;
 
   return (
     <motion.div

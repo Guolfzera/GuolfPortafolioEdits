@@ -31,6 +31,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CL",
   },
+  // Evita que la extensión Dark Reader altere los colores del diseño (y los errores de hidratación que provoca)
+  other: { "darkreader-lock": "true" },
 };
 
 // Datos estructurados para que Google entienda quién eres y qué haces
