@@ -3,7 +3,7 @@ const words = ["Video Editor", "Stream Clips", "Producción", "YouTube", "Speed 
 export function MarqueeBand() {
   return (
     <div className="relative z-10 -my-4 overflow-hidden py-8">
-      <div className="-mx-4 -rotate-2 bg-ink py-5 text-white shadow-lift">
+      <div data-cursor-theme="dark" className="-mx-4 -rotate-2 bg-ink py-5 text-white shadow-lift">
         <div className="marquee" style={{ "--marquee-duration": "40s" } as React.CSSProperties}>
           {[0, 1].map((k) => (
             <div key={k} className="flex shrink-0 items-center" aria-hidden={k === 1}>

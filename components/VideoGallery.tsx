@@ -16,7 +16,7 @@ export function VideoGallery() {
   const visible = filter === "all" ? videos : videos.filter((v) => v.category === filter);
 
   return (
-    <section id="trabajos" className="relative bg-ink px-4 py-28 text-white md:px-8 md:py-36">
+    <section id="trabajos" data-cursor-theme="dark" className="relative bg-ink px-4 py-28 text-white md:px-8 md:py-36">
       <div className="mx-auto max-w-6xl">
         <SectionHeading index="02" eyebrow="Trabajos" title="Proyectos seleccionados" dark>
           <Reveal delay={0.2} className="text-sm text-white/50">

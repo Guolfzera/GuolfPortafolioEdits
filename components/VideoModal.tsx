@@ -30,6 +30,7 @@ export function VideoModal({ video, onClose }: { video: Video | null; onClose: (
           exit={{ opacity: 0 }}
           onClick={onClose}
           role="dialog"
+          data-cursor-theme="dark"
           aria-modal="true"
           aria-label={video.title}
         >

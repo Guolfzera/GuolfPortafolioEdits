@@ -12,7 +12,7 @@ export function Contact() {
   ].filter((s) => s.href);
 
   return (
-    <section id="contacto" className="relative overflow-hidden bg-ink px-4 pb-10 pt-28 text-white md:px-8 md:pt-40">
+    <section id="contacto" data-cursor-theme="dark" className="relative overflow-hidden bg-ink px-4 pb-10 pt-28 text-white md:px-8 md:pt-40">
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-white/[0.06] blur-3xl"
