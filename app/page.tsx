@@ -17,11 +17,11 @@ export default function Home() {
       <main>
         <Hero />
         <MarqueeBand />
-        <BehindTheScenes />
         <VideoGallery />
-        <Services />
         <Clients />
+        <BehindTheScenes />
         <About photo={resolvePublicImage(site.about.photo)} />
+        <Services />
         <Contact />
       </main>
     </>

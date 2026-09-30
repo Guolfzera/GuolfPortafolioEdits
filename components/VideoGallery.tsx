@@ -18,7 +18,7 @@ export function VideoGallery() {
   return (
     <section id="trabajos" className="relative bg-night px-4 py-28 text-white md:px-8 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="02" eyebrow="Trabajos" title="Proyectos seleccionados" dark>
+        <SectionHeading index="01" eyebrow="Trabajos" title="Proyectos seleccionados" dark>
           <Reveal delay={0.2} className="text-sm text-white/50">
             {videos.length} proyectos
           </Reveal>

@@ -190,7 +190,7 @@ export function Hero() {
       </div>
 
       <motion.a
-        href="#bts"
+        href="#trabajos"
         aria-label="Bajar"
         className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-mute md:flex"
         initial={{ opacity: 0 }}

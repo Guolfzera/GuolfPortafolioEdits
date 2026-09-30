@@ -5,10 +5,10 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import { site } from "@/data/site";
 
 const links = [
-  { href: "#bts", label: "Detrás de escena" },
   { href: "#trabajos", label: "Trabajos" },
-  { href: "#servicios", label: "Servicios" },
+  { href: "#bts", label: "Detrás de escena" },
   { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#servicios", label: "Servicios" },
   { href: "#contacto", label: "Contacto" },
 ];
 

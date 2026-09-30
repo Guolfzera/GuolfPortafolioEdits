@@ -6,7 +6,7 @@ export function Services() {
   return (
     <section id="servicios" className="px-4 py-28 md:px-8 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="03" eyebrow="Servicios" title="Qué puedo hacer por ti">
+        <SectionHeading index="04" eyebrow="Servicios" title="Qué puedo hacer por ti">
           <Reveal delay={0.2} className="max-w-xs text-ink/60">
             De la idea a la entrega final: grabación, edición y contenido listo para publicar.
           </Reveal>
