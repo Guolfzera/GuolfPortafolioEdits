@@ -41,7 +41,7 @@ function Row({ label, items, reverse, dark }: { label: string; items: Client[]; 
                 <div
                   key={i}
                   className={`flex h-24 w-56 shrink-0 flex-col items-center justify-center rounded-2xl border px-6 shadow-soft transition-all duration-500 ease-out-expo hover:-translate-y-1.5 hover:shadow-lift ${
-                    dark ? "border-white/10 bg-ink text-white" : "border-line bg-white text-ink"
+                    dark ? "border-white/10 bg-night text-white" : "border-line bg-card text-ink"
                   }`}
                 >
                   {c.logo ? (

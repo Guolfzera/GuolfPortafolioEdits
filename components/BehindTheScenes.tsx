@@ -19,7 +19,7 @@ export function BehindTheScenes() {
             const src = resolvePublicImage(photo.src);
             return (
             <Reveal key={i} delay={(i % 3) * 0.1} className="mb-5 break-inside-avoid">
-              <figure className="group relative overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-black/5 transition-all duration-500 ease-out-expo hover:-translate-y-2 hover:shadow-lift">
+              <figure className="group relative overflow-hidden rounded-2xl bg-card shadow-soft ring-1 ring-white/5 transition-all duration-500 ease-out-expo hover:-translate-y-2 hover:shadow-lift">
                 <div
                   className={`relative overflow-hidden ${photo.ratio ? "" : photo.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}
                   style={photo.ratio ? { aspectRatio: photo.ratio } : undefined}
@@ -36,7 +36,7 @@ export function BehindTheScenes() {
                     <PhotoPlaceholder index={i} expected={photo.src} />
                   )}
                 </div>
-                <figcaption className="absolute inset-x-3 bottom-3 translate-y-3 rounded-xl bg-white/85 px-4 py-2.5 text-sm font-medium opacity-0 shadow-soft backdrop-blur-md transition-all duration-500 ease-out-expo group-hover:translate-y-0 group-hover:opacity-100">
+                <figcaption className="absolute inset-x-3 bottom-3 translate-y-3 rounded-xl bg-night/80 px-4 py-2.5 text-sm font-medium opacity-0 shadow-soft backdrop-blur-md transition-all duration-500 ease-out-expo group-hover:translate-y-0 group-hover:opacity-100">
                   {photo.alt}
                 </figcaption>
               </figure>
@@ -53,7 +53,7 @@ export function BehindTheScenes() {
 function PhotoPlaceholder({ index, expected }: { index: number; expected: string }) {
   const hint = process.env.NODE_ENV === "development" && expected;
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-200 to-neutral-300 transition-transform duration-700 ease-out-expo group-hover:scale-105">
+    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-800 to-neutral-900 transition-transform duration-700 ease-out-expo group-hover:scale-105">
       <div className="text-center text-neutral-500">
         <svg viewBox="0 0 24 24" className="mx-auto mb-2 h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path d="M3 7h3l2-3h8l2 3h3v13H3z" />

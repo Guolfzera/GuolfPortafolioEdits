@@ -15,12 +15,12 @@ export function Services() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-5">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={(i % 3) * 0.1} className={s.featured ? "md:col-span-2" : ""}>
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white p-7 shadow-soft transition-all duration-500 ease-out-expo hover:-translate-y-2 hover:border-ink hover:bg-ink hover:text-white hover:shadow-lift md:p-8">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-card p-7 shadow-soft transition-all duration-500 ease-out-expo hover:-translate-y-2 hover:border-ink hover:bg-ink hover:text-night hover:shadow-lift md:p-8">
                 <div className="mb-10 flex items-start justify-between">
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-ink text-white transition-all duration-500 ease-out-expo group-hover:rotate-[-6deg] group-hover:scale-110 group-hover:bg-white group-hover:text-ink">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-ink text-night transition-all duration-500 ease-out-expo group-hover:rotate-[-6deg] group-hover:scale-110 group-hover:bg-night group-hover:text-ink">
                     <Icon name={s.icon} />
                   </span>
-                  <span className="font-display text-sm font-bold text-mute transition-colors duration-500 group-hover:text-white/50">
+                  <span className="font-display text-sm font-bold text-mute transition-colors duration-500 group-hover:text-night/50">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -31,7 +31,7 @@ export function Services() {
                   {s.title}
                 </h3>
                 <p
-                  className={`mt-3 text-ink/60 transition-colors duration-500 group-hover:text-white/70 ${
+                  className={`mt-3 text-ink/60 transition-colors duration-500 group-hover:text-night/70 ${
                     s.featured ? "max-w-xl text-lg" : ""
                   }`}
                 >
@@ -42,7 +42,7 @@ export function Services() {
                   {s.tags.map((t) => (
                     <li
                       key={t}
-                      className="rounded-full border border-line px-3 py-1 text-xs font-medium text-ink/70 transition-colors duration-500 group-hover:border-white/20 group-hover:text-white/80"
+                      className="rounded-full border border-line px-3 py-1 text-xs font-medium text-ink/70 transition-colors duration-500 group-hover:border-night/20 group-hover:text-night/80"
                     >
                       {t}
                     </li>
@@ -52,7 +52,7 @@ export function Services() {
                 {s.featured && (
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute -bottom-16 -right-10 font-display text-[12rem] font-bold leading-none text-ink/[0.04] transition-all duration-700 ease-out-expo group-hover:-translate-x-4 group-hover:text-white/[0.06]"
+                    className="pointer-events-none absolute -bottom-16 -right-10 font-display text-[12rem] font-bold leading-none text-ink/[0.04] transition-all duration-700 ease-out-expo group-hover:-translate-x-4 group-hover:text-night/[0.06]"
                   >
                     REC
                   </span>

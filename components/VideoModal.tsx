@@ -30,7 +30,7 @@ export function VideoModal({ video, onClose }: { video: Video | null; onClose: (
           exit={{ opacity: 0 }}
           onClick={onClose}
           role="dialog"
-          data-cursor-theme="dark"
+         
           aria-modal="true"
           aria-label={video.title}
         >
@@ -66,7 +66,7 @@ export function VideoModal({ video, onClose }: { video: Video | null; onClose: (
               <button
                 onClick={onClose}
                 aria-label="Cerrar"
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white text-ink transition-transform duration-300 hover:rotate-90"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white text-night transition-transform duration-300 hover:rotate-90"
               >
                 ✕
               </button>

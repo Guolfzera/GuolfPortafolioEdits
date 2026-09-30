@@ -43,7 +43,7 @@ export function VideoCard({ video, onPlay }: { video: Video; onPlay: () => void 
         {categoryLabel(video.category)}
       </span>
 
-      <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 scale-75 place-items-center rounded-full bg-white text-ink opacity-0 shadow-lift transition-all duration-500 ease-out-expo group-hover:scale-100 group-hover:opacity-100 [.custom-cursor_&]:hidden">
+      <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 scale-75 place-items-center rounded-full bg-white text-night opacity-0 shadow-lift transition-all duration-500 ease-out-expo group-hover:scale-100 group-hover:opacity-100 [.custom-cursor_&]:hidden">
         <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor">
           <path d="M8 5v14l11-7z" />
         </svg>

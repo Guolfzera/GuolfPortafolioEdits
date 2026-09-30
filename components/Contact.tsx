@@ -12,7 +12,7 @@ export function Contact() {
   ].filter((s) => s.href);
 
   return (
-    <section id="contacto" data-cursor-theme="dark" className="relative overflow-hidden bg-ink px-4 pb-10 pt-28 text-white md:px-8 md:pt-40">
+    <section id="contacto" className="relative overflow-hidden bg-night px-4 pb-10 pt-28 text-white md:px-8 md:pt-40">
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-white/[0.06] blur-3xl"
@@ -46,7 +46,7 @@ export function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Instagram @${contact.instagramUser}`}
-                className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-5 text-lg font-medium text-ink shadow-glow transition-transform duration-300 hover:scale-[1.04]"
+                className="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-5 text-lg font-medium text-night shadow-glow transition-transform duration-300 hover:scale-[1.04]"
               >
                 <svg
                   viewBox="0 0 24 24"

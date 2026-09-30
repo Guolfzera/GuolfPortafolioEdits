@@ -4,15 +4,12 @@ import { useEffect, useState } from "react";
 import { motion, useMotionValue } from "motion/react";
 
 const INTERACTIVE = "a, button, [data-cursor]";
-// Secciones con fondo oscuro: ahí el cursor pasa a blanco sólido para no perderse
-const DARK_ZONE = "[data-cursor-theme='dark']";
 
 // Círculo que sigue al mouse y crece sobre elementos clickeables (solo escritorio)
 export function Cursor() {
   const [enabled, setEnabled] = useState(false);
   const [hover, setHover] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
-  const [dark, setDark] = useState(false);
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
 
@@ -30,7 +27,6 @@ export function Cursor() {
       const target = e.target as HTMLElement | null;
       const el = target?.closest?.(INTERACTIVE) as HTMLElement | null;
       setHover(el ? el.dataset.cursor ?? "" : null);
-      setDark(!!target?.closest?.(DARK_ZONE));
     };
     const leave = () => setVisible(false);
     window.addEventListener("pointermove", move);
@@ -45,12 +41,9 @@ export function Cursor() {
   if (!enabled) return null;
 
   const label = hover || "";
-  const size = label ? 88 : hover !== null ? 56 : dark ? 16 : 14;
-  // Siempre blanco; el borde oscuro fino lo hace visible también sobre fondos claros.
-  // Sobre links es un aro (centro transparente) para no tapar el texto del botón.
-  const edge = dark
-    ? "shadow-[0_0_0_1.5px_rgb(0_0_0/0.55),0_0_18px_rgb(255_255_255/0.55)]"
-    : "shadow-[0_0_0_1.5px_rgb(0_0_0/0.7),0_4px_12px_rgb(0_0_0/0.25)]";
+  const size = label ? 88 : hover !== null ? 56 : 16;
+  // Blanco con borde oscuro fino y brillo; sobre links es un aro para no tapar el texto
+  const edge = "shadow-[0_0_0_1.5px_rgb(0_0_0/0.55),0_0_18px_rgb(255_255_255/0.45)]";
   const ring = hover !== null && !label;
   const look = ring ? `border-2 border-white bg-transparent ${edge}` : `bg-white ${edge}`;
 
