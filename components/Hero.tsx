@@ -1,24 +1,32 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { site } from "@/data/site";
-import { embedUrl } from "@/lib/video";
+import { videos } from "@/data/videos";
+import { embedUrl, findVideo, thumbnailUrl } from "@/lib/video";
 import { SplitText } from "./ui/SplitText";
 import { Magnetic } from "./ui/Magnetic";
+import { VideoModal } from "./VideoModal";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const reelScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
   const reelRotate = useTransform(scrollYProgress, [0, 1], [-3, 0]);
 
   const [first, ...rest] = site.name.split(" ");
   const reel = embedUrl(site.showreel, { background: true });
+  // Si el showreel es uno de los videos de la lista, usamos su título, cliente y formato
+  const featured = findVideo(videos, site.showreel);
+  const vertical = featured?.vertical ?? false;
+  const thumb = featured ? thumbnailUrl(featured) : null;
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
 
   return (
     <section
@@ -100,7 +108,7 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Tarjeta de showreel */}
+        {/* Tarjeta de showreel / video destacado */}
         <motion.div
           initial={{ opacity: 0, y: 80, rotate: -8 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
@@ -108,28 +116,75 @@ export function Hero() {
         >
           <motion.div
             style={{ scale: reelScale, rotate: reelRotate }}
-            className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-ink shadow-lift sm:aspect-video lg:aspect-[4/5]"
+            className={`relative overflow-hidden rounded-3xl bg-ink shadow-lift ${
+              vertical
+                ? "mx-auto aspect-[9/16] w-full max-w-[calc(70svh*9/16)]"
+                : "aspect-[4/3] sm:aspect-video lg:aspect-[4/5]"
+            }`}
           >
             {reel ? (
-              <iframe
-                src={reel}
-                title="Showreel"
-                allow="autoplay; encrypted-media"
-                className="pointer-events-none absolute left-1/2 top-1/2 aspect-video h-full min-w-full -translate-x-1/2 -translate-y-1/2 scale-110 grayscale"
-              />
+              <button
+                type="button"
+                onClick={() => featured && setOpen(true)}
+                data-cursor={featured ? "Play" : undefined}
+                aria-label={featured ? `Ver ${featured.title} con sonido` : "Showreel"}
+                className="group absolute inset-0 block text-left"
+              >
+                {thumb && (
+                  // Miniatura de fondo mientras carga el video
+                  <img src={thumb.src} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                )}
+                <iframe
+                  src={reel}
+                  title={featured?.title ?? "Showreel"}
+                  allow="autoplay; encrypted-media"
+                  tabIndex={-1}
+                  className={
+                    vertical
+                      ? "pointer-events-none absolute inset-0 h-full w-full scale-[1.2]"
+                      : "pointer-events-none absolute left-1/2 top-1/2 aspect-video h-full min-w-full -translate-x-1/2 -translate-y-1/2 scale-110"
+                  }
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+                <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5 text-white">
+                  <span className="flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.25em] text-white/80">
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" /> Destacado
+                  </span>
+                </div>
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 text-white">
+                  <div>
+                    {featured?.client && (
+                      <p className="text-xs uppercase tracking-[0.25em] text-white/60">{featured.client}</p>
+                    )}
+                    <p className="font-display text-xl font-bold leading-tight md:text-2xl">
+                      {featured?.title ?? "Showreel"}
+                    </p>
+                  </div>
+                  {featured && (
+                    <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-white px-3 py-2 text-xs font-semibold text-ink shadow-lift transition-transform duration-300 group-hover:scale-105">
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden>
+                        <path d="M3 10v4h4l5 4V6L7 10zm13.5 2A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z" />
+                      </svg>
+                      Con sonido
+                    </span>
+                  )}
+                </div>
+              </button>
             ) : (
-              <TimelineArt />
+              <>
+                <TimelineArt />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-6 text-white">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.25em] text-white/60">Showreel</p>
+                    <p className="font-display text-2xl font-bold">{site.name}</p>
+                  </div>
+                  <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-white/70">
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" /> Rec
+                  </span>
+                </div>
+              </>
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-6 text-white">
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-white/60">Showreel</p>
-                <p className="font-display text-2xl font-bold">{site.name}</p>
-              </div>
-              <span className="flex items-center gap-2 text-xs uppercase tracking-widest text-white/70">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" /> Rec
-              </span>
-            </div>
           </motion.div>
         </motion.div>
       </div>
@@ -151,6 +206,8 @@ export function Hero() {
           />
         </span>
       </motion.a>
+
+      <VideoModal video={open && featured ? featured : null} onClose={close} />
     </section>
   );
 }

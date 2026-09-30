@@ -46,11 +46,23 @@ export function embedUrl(url: string, opts: { background?: boolean } = {}) {
     : `https://player.vimeo.com/video/${p.id}?autoplay=1&title=0&byline=0&portrait=0`;
 }
 
-export function thumbnailUrl(video: Video) {
-  if (video.thumbnail) return video.thumbnail;
+// Miniatura principal + una de respaldo por si la primera no existe
+export function thumbnailUrl(video: Video): { src: string; fallback?: string } | null {
+  if (video.thumbnail) return { src: video.thumbnail };
   const p = parseVideo(video.url);
   if (!p) return null;
-  return p.provider === "youtube"
-    ? `https://i.ytimg.com/vi/${p.id}/hqdefault.jpg`
-    : `https://vumbnail.com/${p.id}.jpg`;
+  if (p.provider === "vimeo") return { src: `https://vumbnail.com/${p.id}.jpg` };
+  const base = `https://i.ytimg.com/vi/${p.id}`;
+  // oar2 es la miniatura vertical (1080x1920) de los Shorts; las demás vienen en 16:9
+  return { src: `${base}/${video.vertical ? "oar2" : "maxresdefault"}.jpg`, fallback: `${base}/hqdefault.jpg` };
+}
+
+// Busca un video de la lista por su link (compara el id, así da igual el formato del link)
+export function findVideo(list: Video[], url: string) {
+  const target = parseVideo(url);
+  if (!target) return undefined;
+  return list.find((v) => {
+    const p = parseVideo(v.url);
+    return p?.provider === target.provider && p.id === target.id;
+  });
 }

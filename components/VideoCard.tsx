@@ -17,9 +17,13 @@ export function VideoCard({ video, onPlay }: { video: Video; onPlay: () => void 
     >
       {thumb ? (
         <img
-          src={thumb}
+          src={thumb.src}
           alt=""
           loading="lazy"
+          onError={(e) => {
+            const img = e.currentTarget;
+            if (thumb.fallback && !img.src.endsWith(thumb.fallback)) img.src = thumb.fallback;
+          }}
           className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-700 ease-out-expo group-hover:scale-105 group-hover:grayscale-0"
         />
       ) : (
@@ -35,7 +39,7 @@ export function VideoCard({ video, onPlay }: { video: Video; onPlay: () => void 
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/20" />
 
-      <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-white/80 backdrop-blur-md">
+      <span className="absolute left-3 top-3 whitespace-nowrap rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.12em] text-white/80 backdrop-blur-md md:left-4 md:top-4 md:px-3 md:text-[10px] md:tracking-[0.2em]">
         {categoryLabel(video.category)}
       </span>
 

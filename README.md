@@ -62,11 +62,10 @@ Para agregar más fotos, suma una línea en `data/photos.ts` siguiendo el mismo 
 Guarda los logos en `public/clients/` (PNG o SVG sin fondo) y ponlos en `data/clients.ts`:
 `{ name: "Marca", type: "marca", logo: "/clients/marca.png" }` (`type` es `"creador"` o `"marca"`).
 
-### Showreel de portada
+### Video destacado de la portada
 
-Pega el link de YouTube/Vimeo en `showreel` dentro de `data/site.ts`. Se reproduce en silencio y en loop.
-
-> Antes de publicar, reemplaza el video de ejemplo (Big Buck Bunny) y agrega los links de tus videos reales.
+En `data/site.ts` → `showreel`, pega el link de uno de tus videos de `data/videos.ts`.
+Se reproduce en silencio en la portada, toma su título y cliente, y al hacer clic se abre con sonido.
 
 ## Publicar en Vercel
 

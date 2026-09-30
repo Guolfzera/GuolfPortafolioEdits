@@ -5,8 +5,9 @@ export const site = {
   tagline: "Cortes con ritmo para creadores, streamers y marcas.",
   description:
     "Cristóbal «Guolf», editor de video y clipper. Clips para streamers, videos de YouTube (vlogs y podcasts), producción de eventos con equipo de grabación y campañas con influencers de la escena chilena para marcas como AMD, Fortnite y MG Motors.",
-  // Link de YouTube o Vimeo de tu showreel (se reproduce en silencio de fondo en la portada). Déjalo vacío para no usarlo.
-  showreel: "",
+  // Video destacado de la portada (se reproduce en silencio). Si es uno de los links de data/videos.ts,
+  // toma su título, cliente y formato vertical. Déjalo vacío para mostrar la animación de timeline.
+  showreel: "https://youtube.com/shorts/rsJ7dgm_hPk",
   about: {
     fullName: "Cristóbal",
     alias: "Guolf",
