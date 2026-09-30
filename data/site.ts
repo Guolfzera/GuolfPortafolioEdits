@@ -11,8 +11,8 @@ export const site = {
     fullName: "Cristóbal",
     alias: "Guolf",
     age: 24,
-    // Foto tuya en /public (ej. "/photos/yo.jpg"). Vacío = placeholder.
-    photo: "",
+    // Tu foto: guárdala como public/photos/cristobal-guolf-editor-de-video.jpg (o .png/.webp)
+    photo: "/photos/cristobal-guolf-editor-de-video.jpg",
     bio: [
       "Soy Cristóbal, pero en la escena me conocen como Guolf. Tengo 24 años y llevo 2 años editando video para creadores de contenido y marcas de la escena chilena.",
       "He trabajado con Rakyz, Diego Venegas, Blumecl, Vichoobtw, Flavia Martin y el podcast Weones Pencas, y he editado campañas junto a influencers para marcas como AMD, Fortnite, MG Motors y Delicious Pro.",

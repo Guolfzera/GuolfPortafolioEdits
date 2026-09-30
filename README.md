@@ -38,10 +38,24 @@ En `data/videos.ts` agrega una línea:
 
 ### Agregar fotos
 
-1. Copia las imágenes a `public/photos/` (ej. `public/photos/setup.jpg`).
-2. En `data/photos.ts`: `{ src: "/photos/setup.jpg", alt: "Mi setup", tall: true }`.
+Los nombres ya están definidos en `data/photos.ts`. Solo guarda cada foto en `public/photos/` con ese nombre y aparece sola (puede ser .jpg, .png o .webp):
 
-Tu foto para "Sobre mí" va en `data/site.ts` → `about.photo`.
+| Archivo | Qué foto |
+| --- | --- |
+| `cristobal-guolf-editor-de-video.jpg` | Tu foto para "Sobre mí" |
+| `editor-de-video-guolf-setup.jpg` | Tu setup (vertical) |
+| `edicion-de-video-premiere-pro.jpg` | Pantalla con Premiere Pro |
+| `edicion-de-video-after-effects.jpg` | Pantalla con After Effects |
+| `editor-de-video-cristobal-guolf-editando.jpg` | Tú editando (vertical) |
+| `edicion-clips-de-stream.jpg` | Editando clips de stream |
+| `edicion-de-video-para-marcas.jpg` | Trabajando en una campaña |
+
+Con `npm run dev`, las fotos que faltan muestran el nombre esperado.
+
+**Nombres para Google:** minúsculas, sin tildes ni ñ, palabras separadas con guiones
+(`edicion-de-video-premiere-pro.jpg` ✅, `ediciondevideo1.jpg` ❌). El texto `alt` de cada foto
+también cuenta: describe lo que se ve usando palabras que alguien buscaría.
+Para agregar más fotos, suma una línea en `data/photos.ts` siguiendo el mismo formato.
 
 ### Logos de clientes
 

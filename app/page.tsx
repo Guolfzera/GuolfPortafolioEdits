@@ -6,6 +6,8 @@ import { BehindTheScenes } from "@/components/BehindTheScenes";
 import { Clients } from "@/components/Clients";
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
+import { site } from "@/data/site";
+import { resolvePublicImage } from "@/lib/assets";
 
 export default function Home() {
   return (
@@ -17,7 +19,7 @@ export default function Home() {
         <BehindTheScenes />
         <VideoGallery />
         <Clients />
-        <About />
+        <About photo={resolvePublicImage(site.about.photo)} />
         <Contact />
       </main>
     </>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { photos } from "@/data/photos";
+import { resolvePublicImage } from "@/lib/assets";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
@@ -14,20 +15,22 @@ export function BehindTheScenes() {
         </SectionHeading>
 
         <div className="columns-1 gap-5 sm:columns-2 lg:columns-3">
-          {photos.map((photo, i) => (
+          {photos.map((photo, i) => {
+            const src = resolvePublicImage(photo.src);
+            return (
             <Reveal key={i} delay={(i % 3) * 0.1} className="mb-5 break-inside-avoid">
               <figure className="group relative overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-black/5 transition-all duration-500 ease-out-expo hover:-translate-y-2 hover:shadow-lift">
                 <div className={`relative overflow-hidden ${photo.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
-                  {photo.src ? (
+                  {src ? (
                     <Image
-                      src={photo.src}
+                      src={src}
                       alt={photo.alt}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="object-cover grayscale-[40%] transition-all duration-700 ease-out-expo group-hover:scale-105 group-hover:grayscale-0"
                     />
                   ) : (
-                    <PhotoPlaceholder index={i} />
+                    <PhotoPlaceholder index={i} expected={photo.src} />
                   )}
                 </div>
                 <figcaption className="absolute inset-x-3 bottom-3 translate-y-3 rounded-xl bg-white/85 px-4 py-2.5 text-sm font-medium opacity-0 shadow-soft backdrop-blur-md transition-all duration-500 ease-out-expo group-hover:translate-y-0 group-hover:opacity-100">
@@ -35,14 +38,17 @@ export function BehindTheScenes() {
                 </figcaption>
               </figure>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-function PhotoPlaceholder({ index }: { index: number }) {
+// En desarrollo muestra el nombre de archivo que falta; en el sitio publicado solo "Foto 01"
+function PhotoPlaceholder({ index, expected }: { index: number; expected: string }) {
+  const hint = process.env.NODE_ENV === "development" && expected;
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-200 to-neutral-300 transition-transform duration-700 ease-out-expo group-hover:scale-105">
       <div className="text-center text-neutral-500">
@@ -51,6 +57,7 @@ function PhotoPlaceholder({ index }: { index: number }) {
           <circle cx="12" cy="13" r="4" />
         </svg>
         <p className="text-xs uppercase tracking-[0.2em]">Foto {String(index + 1).padStart(2, "0")}</p>
+        {hint && <p className="mt-2 px-4 font-mono text-[11px] normal-case text-neutral-500">public{expected}</p>}
       </div>
     </div>
   );

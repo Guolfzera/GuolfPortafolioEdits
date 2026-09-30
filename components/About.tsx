@@ -7,7 +7,8 @@ import { site } from "@/data/site";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
-export function About() {
+// photo: ruta de la foto si existe en /public (la resuelve page.tsx al compilar)
+export function About({ photo }: { photo: string | null }) {
   const { about } = site;
   const photoRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: photoRef, offset: ["start end", "end start"] });
@@ -25,10 +26,10 @@ export function About() {
               className="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-neutral-200 shadow-lift transition-transform duration-700 ease-out-expo hover:-rotate-1 hover:scale-[1.01]"
             >
               <motion.div style={{ y: photoY }} className="absolute -inset-[10%]">
-                {about.photo ? (
+                {photo ? (
                   <Image
-                    src={about.photo}
-                    alt={`${about.fullName} «${about.alias}»`}
+                    src={photo}
+                    alt={`${about.fullName} «${about.alias}», ${site.role.toLowerCase()}`}
                     fill
                     sizes="(min-width: 1024px) 40vw, 100vw"
                     className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
