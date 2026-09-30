@@ -4,7 +4,7 @@ export const site = {
   role: "Editor de video & clipper",
   tagline: "Cortes con ritmo para creadores, streamers y marcas.",
   description:
-    "Cristóbal «Guolf», editor de video y clipper. Clips para streamers, videos de YouTube (vlogs y podcasts), producción de eventos con equipo de grabación y campañas con influencers de la escena chilena para marcas como AMD, Fortnite y MG Motors.",
+    "Cristóbal «Guolf», editor de video y clipper. Clips para streamers, videos de YouTube (vlogs y podcasts), producción de eventos con equipo de grabación y campañas con influencers de la escena chilena para marcas como Prime Video, AMD, Fortnite y MG Motors.",
   // Video destacado de la portada (se reproduce en silencio). Si es uno de los links de data/videos.ts,
   // toma su título, cliente y formato vertical. Déjalo vacío para mostrar la animación de timeline.
   showreel: "https://youtube.com/shorts/rsJ7dgm_hPk",
@@ -16,7 +16,7 @@ export const site = {
     photo: "/photos/cristobal-guolf-editor-de-video.jpg",
     bio: [
       "Soy Cristóbal, pero en la escena me conocen como Guolf. Tengo 24 años y llevo 2 años editando video para creadores de contenido y marcas de la escena chilena.",
-      "He trabajado con Rakyz, Diego Venegas, Blumecl, Vichoobtw, Flavia Martin y el podcast Weones Pencas, y he editado campañas junto a influencers para marcas como AMD, Fortnite, MG Motors y Delicious Pro.",
+      "He trabajado con Rakyz, Diego Venegas, Blumecl, Vichoobtw, Flavia Martin y el podcast Weones Pencas, y he editado campañas junto a influencers para marcas como Prime Video, AMD, Fortnite, MG Motors, JJO y Delicious Pro.",
       "También trabajo con un equipo con cámara para grabar eventos y producir videos más elaborados, te ayudo con la parte creativa del video y edito formato YouTube: vlogs, videos especiales y podcasts.",
     ],
     highlights: [
@@ -37,7 +37,7 @@ export const site = {
     stats: [
       { value: 2, suffix: "", label: "Años editando" },
       { value: 6, suffix: "", label: "Creadores" },
-      { value: 4, suffix: "+", label: "Marcas en campañas" },
+      { value: 6, suffix: "", label: "Marcas en campañas" },
     ],
   },
   contact: {

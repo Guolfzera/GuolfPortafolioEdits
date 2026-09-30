@@ -46,15 +46,17 @@ export function embedUrl(url: string, opts: { background?: boolean } = {}) {
     : `https://player.vimeo.com/video/${p.id}?autoplay=1&title=0&byline=0&portrait=0`;
 }
 
-// Miniatura principal + una de respaldo por si la primera no existe
-export function thumbnailUrl(video: Video): { src: string; fallback?: string } | null {
-  if (video.thumbnail) return { src: video.thumbnail };
+// Miniatura principal + respaldos en orden por si alguna no existe
+export function thumbnailUrl(video: Video): { src: string; fallbacks: string[] } | null {
+  if (video.thumbnail) return { src: video.thumbnail, fallbacks: [] };
   const p = parseVideo(video.url);
   if (!p) return null;
-  if (p.provider === "vimeo") return { src: `https://vumbnail.com/${p.id}.jpg` };
+  if (p.provider === "vimeo") return { src: `https://vumbnail.com/${p.id}.jpg`, fallbacks: [] };
   const base = `https://i.ytimg.com/vi/${p.id}`;
-  // oar2 es la miniatura vertical (1080x1920) de los Shorts; las demás vienen en 16:9
-  return { src: `${base}/${video.vertical ? "oar2" : "maxresdefault"}.jpg`, fallback: `${base}/hqdefault.jpg` };
+  // oar2 es la miniatura vertical (1080x1920) de los Shorts; las demás vienen en 16:9 o 4:3
+  return video.vertical
+    ? { src: `${base}/oar2.jpg`, fallbacks: [`${base}/hqdefault.jpg`] }
+    : { src: `${base}/maxresdefault.jpg`, fallbacks: [`${base}/sddefault.jpg`, `${base}/hqdefault.jpg`] };
 }
 
 // Busca un video de la lista por su link (compara el id, así da igual el formato del link)

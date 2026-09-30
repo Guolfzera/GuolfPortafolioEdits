@@ -4,7 +4,7 @@
 // client: creador o marca que aparece sobre el título.
 // vertical: true para videos 9:16 (reels, shorts, tiktoks).
 // thumbnail (opcional): imagen propia en /public para la miniatura.
-// El orden de esta lista es el orden en que aparecen en la página.
+// El orden de esta lista es el orden en que aparecen en la página (intercalado por categoría).
 import type { Video } from "@/lib/video";
 
 export const videos: Video[] = [
@@ -14,6 +14,12 @@ export const videos: Video[] = [
     category: "marca",
     url: "https://youtube.com/shorts/rsJ7dgm_hPk",
     vertical: true,
+  },
+  {
+    title: "Campaña Prime Video: Off Campus",
+    client: "Flavia Martin",
+    category: "marca",
+    url: "https://youtu.be/4Gupy9Erm40",
   },
   {
     title: "Clip: implante de pelo",
@@ -37,6 +43,34 @@ export const videos: Video[] = [
     vertical: true,
   },
   {
+    title: "Clip CS: aura farming",
+    client: "Vichoobtw",
+    category: "social",
+    url: "https://youtube.com/shorts/5H8pp_g6InA",
+    vertical: true,
+  },
+  {
+    title: "Campaña AMD x París",
+    client: "Vichoobtw",
+    category: "marca",
+    url: "https://youtube.com/shorts/-2rY_gievIc",
+    vertical: true,
+  },
+  {
+    title: "Reel búsqueda: capítulo 8",
+    client: "Diego Venegas",
+    category: "entretenimiento",
+    url: "https://youtube.com/shorts/Us41R-L-Y8o",
+    vertical: true,
+  },
+  {
+    title: "Clip: fitness edit",
+    client: "Rakyz",
+    category: "social",
+    url: "https://youtube.com/shorts/CrlwY7gHYBQ",
+    vertical: true,
+  },
+  {
     title: "Campaña MG Motors",
     client: "Flavia Martin",
     category: "marca",
@@ -51,6 +85,27 @@ export const videos: Video[] = [
     vertical: true,
   },
   {
+    title: "Clip: Xokas chileno",
+    client: "Rakyz",
+    category: "social",
+    url: "https://youtube.com/shorts/GO94sHtK1pU",
+    vertical: true,
+  },
+  {
+    title: "Campaña JJO",
+    client: "Diego Venegas",
+    category: "marca",
+    url: "https://youtube.com/shorts/fVRC3aiF1Mw",
+    vertical: true,
+  },
+  {
+    title: "Clip: cheater vs cheater",
+    client: "Vichoobtw",
+    category: "social",
+    url: "https://youtube.com/shorts/5qoKfPALk7k",
+    vertical: true,
+  },
+  {
     title: "Campaña Delicious Pro",
     client: "Diego Venegas",
     category: "marca",
@@ -62,6 +117,20 @@ export const videos: Video[] = [
     client: "Weones Pencas",
     category: "entretenimiento",
     url: "https://youtube.com/shorts/rhgQjib5Cx4",
+    vertical: true,
+  },
+  {
+    title: "Clips: EUW tilt",
+    client: "Rakyz",
+    category: "social",
+    url: "https://youtube.com/shorts/4zrYkSNYepQ",
+    vertical: true,
+  },
+  {
+    title: "Clip: carrera a Challenger 2",
+    client: "Rakyz",
+    category: "social",
+    url: "https://youtube.com/shorts/wvJgsEcUdpc",
     vertical: true,
   },
 ];

@@ -14,4 +14,6 @@ export const clients: Client[] = [
   { name: "Fortnite", type: "marca" },
   { name: "MG Motors", type: "marca" },
   { name: "Delicious Pro", type: "marca" },
+  { name: "Prime Video", type: "marca" },
+  { name: "JJO", type: "marca" },
 ];

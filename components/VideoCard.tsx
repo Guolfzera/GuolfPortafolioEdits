@@ -2,6 +2,13 @@
 
 import { categoryLabel, parseVideo, thumbnailUrl, type Video } from "@/lib/video";
 
+function nextThumb(img: HTMLImageElement, fallbacks: string[]) {
+  const i = Number(img.dataset.fallback ?? 0);
+  if (i >= fallbacks.length) return;
+  img.dataset.fallback = String(i + 1);
+  img.src = fallbacks[i];
+}
+
 export function VideoCard({ video, onPlay }: { video: Video; onPlay: () => void }) {
   const thumb = thumbnailUrl(video);
   const playable = !!parseVideo(video.url);
@@ -20,10 +27,9 @@ export function VideoCard({ video, onPlay }: { video: Video; onPlay: () => void 
           src={thumb.src}
           alt=""
           loading="lazy"
-          onError={(e) => {
-            const img = e.currentTarget;
-            if (thumb.fallback && !img.src.endsWith(thumb.fallback)) img.src = thumb.fallback;
-          }}
+          // Si la miniatura no existe, YouTube responde con una imagen gris de 120px: pasamos a la siguiente
+          onLoad={(e) => e.currentTarget.naturalWidth <= 120 && nextThumb(e.currentTarget, thumb.fallbacks)}
+          onError={(e) => nextThumb(e.currentTarget, thumb.fallbacks)}
           className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-700 ease-out-expo group-hover:scale-105 group-hover:grayscale-0"
         />
       ) : (
