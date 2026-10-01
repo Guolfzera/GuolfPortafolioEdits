@@ -15,9 +15,9 @@ export function About({ photo }: { photo: string | null }) {
   const photoY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   return (
-    <section id="sobre-mi" className="px-4 py-28 md:px-8 md:py-36">
+    <section id="sobre-mi" className="bg-night px-4 py-28 md:px-8 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="03" eyebrow="Sobre mí" title={`${about.fullName}, alias ${about.alias}`} />
+        <SectionHeading index="03" eyebrow="Sobre mí" title={`${about.fullName}, alias ${about.alias}`} dark />
 
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <Reveal>
