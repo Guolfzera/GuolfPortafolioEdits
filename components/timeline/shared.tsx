@@ -65,3 +65,36 @@ export function VideoThumb({ video, className }: { video: Video; className?: str
     />
   );
 }
+
+function shuffle<T>(list: T[]) {
+  const a = [...list];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Intercala por creador: uno de cada uno por turnos (Rakyz, Flavia, Diego, Rakyz, Flavia…).
+// Con random, también se mezcla el orden de los creadores y de los videos de cada uno.
+export function interleave<T>(list: T[], key: (item: T) => string, random: boolean) {
+  const groups = new Map<string, T[]>();
+  for (const item of list) {
+    const k = key(item);
+    groups.set(k, [...(groups.get(k) ?? []), item]);
+  }
+  let lists = [...groups.values()];
+  if (random) lists = shuffle(lists).map(shuffle);
+  const longest = Math.max(0, ...lists.map((l) => l.length));
+  const out: T[] = [];
+  for (let i = 0; i < longest; i++) for (const l of lists) if (l[i]) out.push(l[i]);
+  return out;
+}
+
+// Orden intercalado que cambia en cada visita. La mezcla se hace en el navegador después de cargar
+// (el servidor usa el orden sin mezclar) para que no haya diferencias al hidratar.
+export function useInterleaved<T>(list: T[], key: (item: T) => string) {
+  const [order, setOrder] = useState(() => interleave(list, key, false));
+  useEffect(() => setOrder(interleave(list, key, true)), []); // eslint-disable-line react-hooks/exhaustive-deps
+  return order;
+}

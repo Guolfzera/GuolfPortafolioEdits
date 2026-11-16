@@ -12,7 +12,9 @@ import { videos } from "@/data/videos";
 import { categories, embedUrl, findVideo, type Category, type Video } from "@/lib/video";
 import { VideoModal } from "./VideoModal";
 import { Particles } from "./Particles";
-import { longVideos, shorts, usePlayer, VideoThumb } from "./shared";
+import { longVideos, shorts, useInterleaved, usePlayer, VideoThumb } from "./shared";
+
+const byClient = (v: Video) => v.client ?? "";
 
 // Estilo "Timeline": la página es un programa de edición (paneles, bins, pistas y cabezal de reproducción)
 const mono = "font-[family-name:var(--font-tl-mono)]";
@@ -90,6 +92,22 @@ function PanelHeader({ children, right }: { children: React.ReactNode; right?: R
       </span>
       {right}
     </div>
+  );
+}
+
+// Título grande y centrado de cada sección, para saber siempre dónde se está
+function SectionTitle({ title, sub }: { title: string; sub: string }) {
+  return (
+    <motion.div
+      className="border-b border-[#2c2c30] px-4 py-5 text-center md:py-6"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <h2 className="text-xl font-bold tracking-tight text-white md:text-2xl">{title}</h2>
+      <p className="mt-2 text-[10px] uppercase tracking-[0.25em] text-[#5d9de0]">{sub}</p>
+    </motion.div>
   );
 }
 
@@ -301,7 +319,8 @@ function fillRows(list: Video[], cols: number) {
 function ShortsBin({ onPlay }: { onPlay: (v: Video) => void }) {
   const [filter, setFilter] = useState<Category | "all">("all");
   const [more, setMore] = useState(false);
-  const list = filter === "all" ? shorts : shorts.filter((v) => v.category === filter);
+  const ordered = useInterleaved(shorts, byClient);
+  const list = filter === "all" ? ordered : ordered.filter((v) => v.category === filter);
   const cols = useGridColumns();
   const visible = more ? list : fillRows(list, cols);
   const hiddenCount = list.length - visible.length;
@@ -309,6 +328,7 @@ function ShortsBin({ onPlay }: { onPlay: (v: Video) => void }) {
   return (
     <section id="trabajos" className={panel}>
       <PanelHeader right={<span>{list.length} elementos · vista de iconos</span>}>Bin: Shorts y campañas</PanelHeader>
+      <SectionTitle title="Shorts y campañas" sub="Clips, reels y campañas · formato vertical 9:16" />
       <div className="flex gap-1 border-b border-[#2c2c30] px-3 py-2">
         {categories.map((c) => (
           <button
@@ -402,36 +422,26 @@ function ShortsBin({ onPlay }: { onPlay: (v: Video) => void }) {
 // Carrusel de videos largos con una mini regla y cabezal que siguen el desplazamiento
 function YoutubeBin({ onPlay }: { onPlay: (v: Video) => void }) {
   const row = useRef<HTMLDivElement>(null);
+  const ordered = useInterleaved(longVideos, byClient);
   const { scrollXProgress } = useScroll({ container: row });
   const head = useTransform(useSpring(scrollXProgress, { stiffness: 200, damping: 30 }), [0, 1], ["0%", "100%"]);
-  const scroll = (dir: number) => row.current?.scrollBy({ left: dir * row.current.clientWidth * 0.8, behavior: "smooth" });
-
   return (
     <section id="youtube" className={panel}>
       <PanelHeader
         right={
           <span className="flex items-center gap-3">
             <span className="hidden sm:inline">{longVideos.length} elementos · 1920×1080</span>
-            <span className="flex gap-1">
-              {[-1, 1].map((d) => (
-                <button
-                  key={d}
-                  onClick={() => scroll(d)}
-                  aria-label={d < 0 ? "Anteriores" : "Siguientes"}
-                  className="grid h-7 w-7 place-items-center rounded border border-[#2c2c30] text-white/70 hover:border-[#5d9de0] hover:bg-[#5d9de0] hover:text-black"
-                >
-                  {d < 0 ? "◀" : "▶"}
-                </button>
-              ))}
-            </span>
           </span>
         }
       >
         Bin: YouTube
       </PanelHeader>
+      <SectionTitle title="Videos de YouTube" sub="Videos largos editados · formato horizontal 16:9" />
 
+      <div className="relative">
+      <SideArrows target={row} />
       <div ref={row} className="flex snap-x snap-mandatory gap-4 overflow-x-auto p-4 [scrollbar-width:none] md:p-5">
-        {longVideos.map((v, i) => {
+        {ordered.map((v, i) => {
           const color = clipColors[(i + 2) % clipColors.length];
           return (
             <motion.button
@@ -471,10 +481,12 @@ function YoutubeBin({ onPlay }: { onPlay: (v: Video) => void }) {
         })}
       </div>
 
+      </div>
+
       {/* Mini línea de tiempo: cada marca es un video; el cabezal muestra dónde vas en el carrusel */}
       <div className="border-t border-[#2c2c30] px-4 py-3 md:px-5">
         <div className="relative flex h-5 items-end gap-[3px]">
-          {longVideos.map((v, i) => (
+          {ordered.map((v, i) => (
             <span
               key={v.url}
               className="h-full flex-1 rounded-[2px] opacity-70"
@@ -508,20 +520,47 @@ function ScrollRuler({ target, count, offset = 0 }: { target: React.RefObject<HT
   );
 }
 
-function CarouselArrows({ onScroll }: { onScroll: (dir: number) => void }) {
+// Flechas a los costados de un carrusel; se ocultan al llegar al inicio o al final
+function SideArrows({ target }: { target: React.RefObject<HTMLDivElement | null> }) {
+  const [edge, setEdge] = useState({ start: true, end: false });
+
+  useEffect(() => {
+    const el = target.current;
+    if (!el) return;
+    const update = () =>
+      setEdge({ start: el.scrollLeft < 8, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 8 });
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [target]);
+
+  const scroll = (dir: number) =>
+    target.current?.scrollBy({ left: dir * target.current.clientWidth * 0.85, behavior: "smooth" });
+
   return (
-    <span className="flex gap-1">
-      {[-1, 1].map((d) => (
-        <button
-          key={d}
-          onClick={() => onScroll(d)}
-          aria-label={d < 0 ? "Anteriores" : "Siguientes"}
-          className="grid h-7 w-7 place-items-center rounded border border-[#2c2c30] text-white/70 hover:border-[#5d9de0] hover:bg-[#5d9de0] hover:text-black"
-        >
-          {d < 0 ? "◀" : "▶"}
-        </button>
-      ))}
-    </span>
+    <>
+      {[-1, 1].map((d) => {
+        const off = d < 0 ? edge.start : edge.end;
+        return (
+          <button
+            key={d}
+            type="button"
+            onClick={() => scroll(d)}
+            aria-label={d < 0 ? "Anteriores" : "Siguientes"}
+            tabIndex={off ? -1 : 0}
+            className={`absolute top-1/2 z-20 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-[#111113]/85 text-base text-white shadow-[0_12px_30px_-6px_rgb(0_0_0/0.9)] backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-[#5d9de0] hover:bg-[#5d9de0] hover:text-black md:h-14 md:w-14 ${
+              d < 0 ? "left-2 md:left-3" : "right-2 md:right-3"
+            } ${off ? "pointer-events-none scale-75 opacity-0" : "opacity-100"}`}
+          >
+            {d < 0 ? "◀" : "▶"}
+          </button>
+        );
+      })}
+    </>
   );
 }
 
@@ -529,7 +568,7 @@ function CarouselArrows({ onScroll }: { onScroll: (dir: number) => void }) {
 function ThumbsBin() {
   const row = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState<(typeof thumbnails)[number] | null>(null);
-  const scroll = (dir: number) => row.current?.scrollBy({ left: dir * row.current.clientWidth * 0.9, behavior: "smooth" });
+  const orderedThumbs = useInterleaved(thumbnails, (t) => t.creator);
 
   useEffect(() => {
     if (!open) return;
@@ -544,15 +583,17 @@ function ThumbsBin() {
         right={
           <span className="flex items-center gap-3">
             <span className="hidden sm:inline">{thumbnails.length} elementos · Photoshop</span>
-            {thumbnails.length > 2 && <CarouselArrows onScroll={scroll} />}
           </span>
         }
       >
         Bin: Miniaturas
       </PanelHeader>
+      <SectionTitle title="Miniaturas" sub="Diseño de miniaturas en Photoshop" />
 
+      <div className="relative">
+      <SideArrows target={row} />
       <div ref={row} className="flex snap-x snap-mandatory gap-4 overflow-x-auto p-4 [scrollbar-width:none] md:gap-5 md:p-5">
-        {thumbnails.map((t, i) => {
+        {orderedThumbs.map((t, i) => {
           const color = clipColors[(i + 3) % clipColors.length];
           return (
             <motion.button
@@ -595,6 +636,8 @@ function ThumbsBin() {
             </motion.button>
           );
         })}
+      </div>
+
       </div>
 
       {thumbnails.length > 2 && <ScrollRuler target={row} count={thumbnails.length} offset={3} />}
@@ -700,6 +743,7 @@ function BtsBin({ photos }: { photos: ResolvedPhoto[] }) {
   return (
     <section id="bts" className={panel}>
       <PanelHeader right={<span>{list.length} elementos · imágenes</span>}>Bin: Detrás de escena</PanelHeader>
+      <SectionTitle title="Detrás de escena" sub="Así se ve el proceso de cada entrega" />
       <div className="columns-1 gap-7 bg-[radial-gradient(rgb(255_255_255/0.06)_1px,transparent_1px)] p-5 pt-8 [background-size:18px_18px] sm:columns-2 md:p-8 lg:columns-4">
         {visible.map((p, i) => {
           const color = clipColors[(i + 4) % clipColors.length];
@@ -758,6 +802,7 @@ function Effects() {
   return (
     <section id="servicios" className={panel}>
       <PanelHeader right={<span>{services.length} presets</span>}>Efectos: Servicios</PanelHeader>
+      <SectionTitle title="Servicios" sub="Qué puedo hacer por ti" />
       <div className="grid gap-3 p-4 md:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (
           <article
@@ -804,12 +849,14 @@ function Metadata() {
     ...about.stats.map((s) => [s.label, String(s.value)]),
   ];
   return (
-    <section id="sobre-mi" className={`${panel} grid md:grid-cols-[18rem_1fr]`}>
+    <section id="sobre-mi" className={panel}>
+      <PanelHeader right={<span>Metadatos</span>}>Información del editor</PanelHeader>
+      <SectionTitle title="Sobre mí" sub={`${about.fullName} «${about.alias}» · ${site.role}`} />
+      <div className="grid md:grid-cols-[18rem_1fr]">
       <div className="relative aspect-square md:aspect-auto">
-        <Image src={about.photo} alt={about.fullName} fill sizes="300px" className="rounded-l-md object-cover" />
+        <Image src={about.photo} alt={about.fullName} fill sizes="300px" className="rounded-bl-md object-cover" />
       </div>
       <div>
-        <PanelHeader right={<span>Metadatos</span>}>Sobre mí</PanelHeader>
         <dl className="grid grid-cols-[9rem_1fr] gap-x-4 gap-y-1.5 p-4 text-xs">
           {rows.map(([k, v]) => (
             <div key={k} className="contents">
@@ -823,6 +870,7 @@ function Metadata() {
             <p key={p}>{p}</p>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

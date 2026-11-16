@@ -1,6 +1,6 @@
 // Videos largos (horizontales) que editaste para YouTube.
 // Para agregar uno, copia una línea: channel es el canal (aparece como filtro), title el título y url el link.
-// El orden de esta lista es el orden en que aparecen en la página.
+// En la página se muestran en orden aleatorio, intercalando los canales.
 export type YoutubeVideo = { channel: string; title: string; url: string };
 
 export const youtubeVideos: YoutubeVideo[] = [
@@ -21,4 +21,5 @@ export const youtubeVideos: YoutubeVideo[] = [
   { channel: "Flavia Martin", title: "EUROTRIP 2026 | DE MADRID A SEVILLA: SHOPPING, HAUL, RAMEN Y MUCHOS TASTE TEST", url: "https://youtu.be/SBQkBhTL4b4" },
   { channel: "Flavia Martin", title: "EUROTRIP 2026 | ESPAÑA A CHILE, YA ES HORA DE VOLVER :(", url: "https://youtu.be/cRpjBn18itE" },
   { channel: "Flavia Martin", title: "EUROTRIP 2026 | ESPAÑA: De Madrid a la Costa Brava, playa, compras, haul y try on", url: "https://youtu.be/0tOYdHy9mq4" },
+  { channel: "Diego Venegas", title: "CASI NOS CHOCAN | SORPRESA CUMPLEAÑOS DANI | VLOG#2", url: "https://youtu.be/YZDIyLujNSU" },
 ];
