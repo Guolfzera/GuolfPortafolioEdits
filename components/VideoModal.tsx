@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useLenis } from "lenis/react";
-import { categoryLabel, embedUrl, type Video } from "@/lib/video";
+import { videoLabel, embedUrl, type Video } from "@/lib/video";
 
 export function VideoModal({ video, onClose }: { video: Video | null; onClose: () => void }) {
   const lenis = useLenis();
@@ -58,7 +58,7 @@ export function VideoModal({ video, onClose }: { video: Video | null; onClose: (
             <div className="mt-4 flex items-start justify-between gap-4 text-white">
               <div>
                 <p className="text-xs uppercase tracking-[0.2em] text-white/50">
-                  {categoryLabel(video.category)}
+                  {videoLabel(video)}
                   {video.client && ` · ${video.client}`}
                 </p>
                 <h3 className="font-display text-xl font-bold">{video.title}</h3>

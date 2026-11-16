@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import { site } from "@/data/site";
+import { siteUrl } from "@/lib/url";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -11,8 +12,11 @@ const display = Space_Grotesk({
   weight: ["400", "500", "700"],
 });
 
+const title = `${site.name} — ${site.role}`;
+
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.role}`,
+  metadataBase: new URL(siteUrl),
+  title,
   description: site.description,
   keywords: [
     "editor de video",
@@ -25,11 +29,20 @@ export const metadata: Metadata = {
     site.about.alias,
   ],
   authors: [{ name: `${site.about.fullName} «${site.about.alias}»` }],
+  alternates: { canonical: "/" },
+  // La imagen de vista previa (app/opengraph-image.tsx) la agrega Next.js sola a openGraph y twitter
   openGraph: {
-    title: `${site.name} — ${site.role}`,
+    title,
     description: site.description,
+    url: "/",
+    siteName: site.name,
     type: "website",
     locale: "es_CL",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description: site.description,
   },
   // Evita que la extensión Dark Reader altere los colores del diseño (y los errores de hidratación que provoca)
   other: { "darkreader-lock": "true" },
@@ -40,6 +53,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: site.about.fullName,
+  url: siteUrl,
+  image: `${siteUrl}${site.about.photo}`,
   alternateName: [site.about.alias, site.name],
   jobTitle: site.role,
   description: site.description,

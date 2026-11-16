@@ -7,6 +7,8 @@ export type Video = {
   client?: string;
   vertical?: boolean;
   thumbnail?: string;
+  // Etiqueta de la tarjeta (por defecto, el nombre de la categoría)
+  label?: string;
 };
 
 export const categories: { id: Category | "all"; label: string }[] = [
@@ -17,6 +19,8 @@ export const categories: { id: Category | "all"; label: string }[] = [
 
 export const categoryLabel = (c: Category) =>
   categories.find((x) => x.id === c)?.label ?? c;
+
+export const videoLabel = (v: Video) => v.label ?? categoryLabel(v.category);
 
 type Parsed = { provider: "youtube" | "vimeo"; id: string } | null;
 

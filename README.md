@@ -19,6 +19,8 @@ Todo el contenido está en la carpeta `data/`. No hace falta tocar nada más.
 | --- | --- |
 | `data/site.ts` | Nombre, frase, bio, puntos destacados, herramientas, cifras, email, Instagram, showreel |
 | `data/videos.ts` | Tus videos |
+| `data/youtube.ts` | Videos largos de YouTube (sección YouTube, filtrados por canal) |
+| `data/thumbnails.ts` | Miniaturas (imágenes en `public/thumbnails/`) y el aviso de precio de lanzamiento |
 | `data/photos.ts` | Fotos detrás de escena |
 | `data/clients.ts` | Marcas / clientes |
 

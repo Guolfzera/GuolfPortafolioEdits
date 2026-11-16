@@ -6,6 +6,8 @@ import { site } from "@/data/site";
 
 const links = [
   { href: "#trabajos", label: "Trabajos" },
+  { href: "#youtube", label: "YouTube" },
+  { href: "#miniaturas", label: "Miniaturas" },
   { href: "#bts", label: "Detrás de escena" },
   { href: "#sobre-mi", label: "Sobre mí" },
   { href: "#servicios", label: "Servicios" },
@@ -43,15 +45,15 @@ export function Navbar() {
             <span className="ml-0.5 inline-block h-2 w-2 rounded-full bg-ink align-middle" />
           </a>
 
-          <ul className="hidden items-center gap-1 md:flex">
+          <ul className="hidden items-center lg:flex">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="group relative block rounded-full px-4 py-2 text-sm font-medium text-ink/70 transition-colors hover:text-ink"
+                  className="group relative block whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-ink/70 transition-colors hover:text-ink"
                 >
                   {l.label}
-                  <span className="absolute inset-x-4 bottom-1.5 h-px origin-left scale-x-0 bg-ink transition-transform duration-500 ease-out-expo group-hover:scale-x-100" />
+                  <span className="absolute inset-x-3 bottom-1.5 h-px origin-left scale-x-0 bg-ink transition-transform duration-500 ease-out-expo group-hover:scale-x-100" />
                 </a>
               </li>
             ))}
@@ -59,7 +61,7 @@ export function Navbar() {
 
           <a
             href="#contacto"
-            className="hidden rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-night shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift md:inline-block"
+            className="hidden rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-night shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift lg:inline-block"
           >
             Hablemos
           </a>
@@ -68,7 +70,7 @@ export function Navbar() {
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
-            className="relative h-10 w-10 md:hidden"
+            className="relative h-10 w-10 lg:hidden"
           >
             <span
               className={`absolute left-2.5 h-0.5 w-5 bg-ink transition-all duration-300 ${open ? "top-[19px] rotate-45" : "top-[15px]"}`}
@@ -83,7 +85,7 @@ export function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-40 flex flex-col justify-end bg-paper px-6 pb-16 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-end bg-paper px-6 pb-16 lg:hidden"
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
@@ -94,7 +96,7 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-4 font-display text-4xl font-bold tracking-tight"
+                className="border-b border-line py-3 font-display text-3xl font-bold tracking-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 + i * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}

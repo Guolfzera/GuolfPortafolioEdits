@@ -1,6 +1,6 @@
 "use client";
 
-import { categoryLabel, parseVideo, thumbnailUrl, type Video } from "@/lib/video";
+import { videoLabel, parseVideo, thumbnailUrl, type Video } from "@/lib/video";
 
 function nextThumb(img: HTMLImageElement, fallbacks: string[]) {
   const i = Number(img.dataset.fallback ?? 0);
@@ -46,7 +46,7 @@ export function VideoCard({ video, onPlay }: { video: Video; onPlay: () => void 
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/20" />
 
       <span className="absolute left-3 top-3 whitespace-nowrap rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.12em] text-white/80 backdrop-blur-md md:left-4 md:top-4 md:px-3 md:text-[10px] md:tracking-[0.2em]">
-        {categoryLabel(video.category)}
+        {videoLabel(video)}
       </span>
 
       <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 scale-75 place-items-center rounded-full bg-white text-night opacity-0 shadow-lift transition-all duration-500 ease-out-expo group-hover:scale-100 group-hover:opacity-100 [.custom-cursor_&]:hidden">
